@@ -2,7 +2,8 @@ schemaVersion: 2.1.0
 metadata: 
   name: localnews-frontend
 components: 
-  - container: 
+  - name: nodejs
+    container: 
       endpoints: 
         - attributes: 
             discoverable: 'true'
@@ -15,7 +16,12 @@ components:
       memoryLimit: 4096Mi
       mountSources: true
       sourceMapping: /projects
-    name: nodejs
+      volumeMounts:
+        - name: npm
+          path: /home/user/.npm
+  - name: npm
+    volume:
+      size: 512Mi
 commands: 
   - exec: 
       commandLine: |
