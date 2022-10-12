@@ -1,0 +1,35 @@
+schemaVersion: 2.1.0
+metadata: 
+  name: localnews-frontend
+components: 
+  - container: 
+      endpoints: 
+        - attributes: 
+            discoverable: 'true'
+            public: 'true'
+          exposure: public
+          name: news-frontend
+          protocol: http
+          targetPort: 4200
+      image: 'registry.redhat.io/devspaces/udi-rhel8@sha256:d55549aad15742f6f7310da0c7abc1e65dd5d3ad2e3efb8fbf414cf91b9efac7'
+      memoryLimit: 4096Mi
+      mountSources: true
+      sourceMapping: /projects
+    name: nodejs
+commands: 
+  - exec: 
+      commandLine: |
+        npm install
+        npm install @angular/cli
+        node_modules/@angular/cli/bin/ng serve --host 0.0.0.0 --port 4200 --disable-host-check
+      component: nodejs
+      label: Download dependencies & Start news-frontend in devmode
+      workingDir: '${PROJECTS_ROOT}/localnews/components/news-frontend'
+    id: download-dependencies--start-news-frontend-in-devmode
+  - exec: 
+      commandLine: node_modules/@angular/cli/bin/ng serve --host 0.0.0.0 --port 4200 --disable-host-check
+      component: nodejs
+      label: Start news-frontend in devmode
+      workingDir: '${PROJECTS_ROOT}/localnews/components/news-frontend'
+    id: start-news-frontend-in-devmode
+  
