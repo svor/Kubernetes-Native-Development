@@ -3,9 +3,12 @@ metadata:
   name: localnews-frontend
 projects:
   - name: localnews
-    source:
-      type: git
-      location: 'https://github.com/Apress/Kubernetes-Native-Development'
+    git:
+      remotes: 
+        origin: 'https://github.com/Apress/Kubernetes-Native-Development'
+      checkoutFrom:
+        revision: "main"
+        remote: origin
 components: 
   - name: nodejs
     container: 
@@ -35,11 +38,11 @@ commands:
         node_modules/@angular/cli/bin/ng serve --host 0.0.0.0 --port 4200 --disable-host-check
       component: nodejs
       label: Download dependencies & Start news-frontend in devmode
-      workingDir: '${PROJECTS_ROOT}/kubernetes-native-development/components/news-frontend'
+      workingDir: '${PROJECTS_ROOT}/localnews/components/news-frontend'
     id: download-dependencies--start-news-frontend-in-devmode
   - exec: 
       commandLine: node_modules/@angular/cli/bin/ng serve --host 0.0.0.0 --port 4200 --disable-host-check
       component: nodejs
       label: Start news-frontend in devmode
-      workingDir: '${PROJECTS_ROOT}/kubernetes-native-development/components/news-frontend'
+      workingDir: '${PROJECTS_ROOT}/localnews/components/news-frontend'
     id: start-news-frontend-in-devmode
