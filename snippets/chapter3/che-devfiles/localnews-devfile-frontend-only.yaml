@@ -5,7 +5,7 @@ projects:
   - name: localnews
     git:
       remotes: 
-        origin: 'https://github.com/Apress/Kubernetes-Native-Development'
+        origin: 'https://github.com/svor/Kubernetes-Native-Development'
       checkoutFrom:
         revision: "main"
         remote: origin
